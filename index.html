@@ -6,37 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Time Converter</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        .page-break {
-            page-break-after: always;
-        }
-    </style>
 </head>
 
-<body class="bg-gray-900 text-white h-screen flex flex-col justify-center">
+<body class="bg-gray-100 h-screen font-sans">
 
-    <!-- Time display -->
-    <div class="text-center mb-12">
-        <div id="local-time" class="text-6xl mb-2">Loading...</div>
-        <div id="time-zone" class="text-4xl">...</div>
+    <!-- Toggle for Dark Mode -->
+    <div class="flex justify-end p-4">
+        <label for="toggleTheme" class="flex items-center cursor-pointer">
+            <div class="relative">
+                <input type="checkbox" id="toggleTheme" class="sr-only">
+                <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+            </div>
+            <div class="ml-3 text-gray-700 font-medium">
+                Dark Mode
+            </div>
+        </label>
     </div>
 
-    <!-- Page Break -->
-    <div class="page-break"></div>
+    <!-- Display Time -->
+    <div class="text-center text-9xl my-12">
+        <span id="display-date">--:--</span>
+        <span class="text-6xl" id="display-timezone">--</span>
+    </div>
 
-    <!-- Input fields and link generator -->
-    <div class="text-center mt-12">
-        <input type="date" id="date-input" class="p-2 bg-gray-800 rounded">
-        <input type="time" id="time-input" class="p-2 bg-gray-800 rounded">
-        <input type="text" id="tz-input" placeholder="Timezone (e.g., EDT)" class="p-2 bg-gray-800 rounded">
+    <!-- Input Controls -->
+    <div class="mt-12">
+        <div class="grid grid-cols-3 gap-4">
+            <input type="date" id="input-date" class="p-2">
+            <input type="time" id="input-time" class="p-2">
+            <input type="text" id="input-timezone" placeholder="Time Zone (EDT, PDT)" class="p-2">
+        </div>
 
-        <div class="mt-4">
-            <a id="generated-link" href="#" target="_blank" class="text-blue-500">Generated Link</a>
-            <button id="copy-btn" class="ml-2 p-2 rounded bg-blue-500 text-white">📋</button>
+        <div class="mt-4 text-center">
+            <input type="text" id="output-link" class="w-full p-2 text-xs" readonly>
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4" id="copy-link">📋 Copy</button>
         </div>
     </div>
 
     <script src="script.js"></script>
+
+    <style>
+        /* Dark Mode Toggle Styling */
+        input:checked ~ .dot {
+            transform: translateX(100%);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1a1a;
+                color: white;
+            }
+        }
+    </style>
+
 </body>
 
 </html>
