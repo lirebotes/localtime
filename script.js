@@ -1,64 +1,27 @@
-// Initialize inputs with current date/time and timezone
-const currentDate = new Date();
-document.getElementById('input-date').valueAsDate = currentDate;
-document.getElementById('input-time').value = `${currentDate.getUTCHours().toString().padStart(2, '0')}:${currentDate.getUTCMinutes().toString().padStart(2, '0')}`;
-document.getElementById('input-timezone').value = Intl.DateTimeFormat().resolvedOptions().timeZone;
-document.getElementById('copy-link').addEventListener('click', copyToClipboard);
-generateLink();
-// Function to update display
-function updateDisplay(dateTime, timeZone) {
-    const optionsDate = {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        timeZone: timeZone
-    };
-
-    let formattedDate = new Intl.DateTimeFormat('en-US', optionsDate).format(dateTime);
-    document.getElementById('display-date').textContent = formattedDate;
-
-    const optionsTimeZone = {
-        timeZoneName: 'short',
-        timeZone: timeZone
-    };
-
-    let formattedTimeZone = new Intl.DateTimeFormat('en-US', optionsTimeZone).format(dateTime);
-    document.getElementById('display-timezone').textContent = formattedTimeZone;
-}
-
-// Detect dark mode preference
-const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-const toggleThemeCheckbox = document.getElementById('toggleTheme');
-
-if (darkModeMediaQuery.matches) {
-    document.body.classList.add('dark-mode');
-    toggleThemeCheckbox.checked = true;
-}
-
-
-toggleThemeCheckbox.addEventListener('change', function() {
-    if (this.checked) {
-        document.body.classList.add('dark-mode');
-    } else {
-        document.body.classList.remove('dark-mode');
+window.onload = () => {
+    const params = new URLSearchParams(window.location.search);
+    const gmtTime = params.get('time');
+    if(gmtTime) {
+        const localTime = new Date(`1970-01-01T${gmtTime}Z`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        document.getElementById('displayTime').innerText = localTime;
     }
-});
+};
 
+function generateURL() {
+    const time = document.getElementById('inputTime').value;
+    const tz = document.getElementById('inputTZ').value;
 
-// Timezone Autocomplete (simplified for demonstration)
-const timezones = ["PDT", "EDT", "CDT", "MDT", "BST", "IST", "CEST", "AEST"];
-const timezoneInput = document.getElementById('input-timezone');
-let activeTimeout;
-timezoneInput.addEventListener('keyup', function() {
-    clearTimeout(activeTimeout);
-    active
+    const timeInGMT = new Date(`1970-01-01T${time}${tz}`).toISOString().substr(11, 5);
+    const generatedURL = `https://lirebotes.github.io/localtime/?time=${timeInGMT}`;
+    document.getElementById('generatedURL').href = generatedURL;
+    document.getElementById('generatedURL').innerText = generatedURL;
+}
 
 function copyToClipboard() {
-    const copyText = document.getElementById('output-link');
-    copyText.select();
+    const el = document.createElement('textarea');
+    el.value = document.getElementById('generatedURL').innerText;
+    document.body.appendChild(el);
+    el.select();
     document.execCommand('copy');
-    alert("Link copied to clipboard!");
+    document.body.removeChild(el);
 }
-
