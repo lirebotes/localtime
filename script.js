@@ -53,3 +53,11 @@ let activeTimeout;
 timezoneInput.addEventListener('keyup', function() {
     clearTimeout(activeTimeout);
     active
+
+function copyToClipboard() {
+    const copyText = document.getElementById('output-link');
+    copyText.select();
+    document.execCommand('copy');
+    alert("Link copied to clipboard!");
+}
+
