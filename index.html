@@ -16,16 +16,21 @@
         <hr class="border-2 border-gray-300 my-10">
         <input class="bg-white p-2 rounded" type="time" id="inputTime" placeholder="Time">
         <input class="bg-white p-2 rounded mt-4" type="text" id="inputTZ" list="timezones" placeholder="Timezone">
-        <datalist id="timezones">
-            <!-- US and EU timezones. Add more as needed. -->
-            <option value="UTC">
-            <option value="EST">
-            <option value="CST">
-            <option value="MST">
-            <option value="PST">
-            <option value="CET">
-            <option value="BST">
-        </datalist>
+<datalist id="timezones">
+    <!-- US and EU timezones. Add more as needed. -->
+    <option value="UTC">
+    <option value="EST">
+    <option value="EDT">
+    <option value="CST">
+    <option value="CDT">
+    <option value="MST">
+    <option value="MDT">
+    <option value="PST">
+    <option value="PDT">
+    <option value="CET">
+    <option value="BST">
+</datalist>
+
         <button class="bg-white p-2 rounded mt-4" onclick="generateURL()">Generate URL</button>
         <div class="mt-4">
             <a id="generatedURL" href="#">Generated URL will appear here</a>
