@@ -8,7 +8,9 @@ window.onload = () => {
 
     // Set current time and timezone as default input
     const now = new Date();
-    const localTimeString = now.toISOString().substr(11, 5);
+    const localHours = String(now.getHours()).padStart(2, '0');
+    const localMinutes = String(now.getMinutes()).padStart(2, '0');
+    const localTimeString = `${localHours}:${localMinutes}`;
     document.getElementById('inputTime').value = localTimeString;
 
     const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
