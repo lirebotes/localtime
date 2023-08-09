@@ -21,15 +21,14 @@ function generateURL() {
         "BST": 1  // Note: BST is indeed GMT+1, but DST handling isn't done here.
     };
 
-    let date = new Date(`1970-01-01T${time}:00`);
-    date.setHours(date.getHours() - timezoneOffset[tz]);
+    let date = new Date(`1970-01-01T${time}:00Z`);
+    date.setUTCHours(date.getUTCHours() + timezoneOffset[tz]);
 
     const timeInGMT = date.toISOString().substr(11, 5);
     const generatedURL = `https://lirebotes.github.io/localtime/?time=${timeInGMT}`;
     document.getElementById('generatedURL').href = generatedURL;
     document.getElementById('generatedURL').innerText = generatedURL;
 }
-
 
 function copyToClipboard() {
     const el = document.createElement('textarea');
