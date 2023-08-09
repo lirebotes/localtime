@@ -1,20 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deploy Time Converter</title>
+    <title>Time Converter</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
+        .page-break {
+            page-break-after: always;
         }
     </style>
 </head>
-<body>
-    <h1>Deploy Time</h1>
-    <p>Your deploy is scheduled at: <strong id="local-time">Loading...</strong></p>
+
+<body class="bg-gray-900 text-white h-screen flex flex-col justify-center">
+
+    <!-- Time display -->
+    <div class="text-center mb-12">
+        <div id="local-time" class="text-6xl mb-2">Loading...</div>
+        <div id="time-zone" class="text-4xl">...</div>
+    </div>
+
+    <!-- Page Break -->
+    <div class="page-break"></div>
+
+    <!-- Input fields and link generator -->
+    <div class="text-center mt-12">
+        <input type="date" id="date-input" class="p-2 bg-gray-800 rounded">
+        <input type="time" id="time-input" class="p-2 bg-gray-800 rounded">
+        <input type="text" id="tz-input" placeholder="Timezone (e.g., EDT)" class="p-2 bg-gray-800 rounded">
+
+        <div class="mt-4">
+            <a id="generated-link" href="#" target="_blank" class="text-blue-500">Generated Link</a>
+            <button id="copy-btn" class="ml-2 p-2 rounded bg-blue-500 text-white">📋</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>
