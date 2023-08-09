@@ -32,13 +32,19 @@ const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 const toggleThemeCheckbox = document.getElementById('toggleTheme');
 
 if (darkModeMediaQuery.matches) {
+    document.body.classList.add('dark-mode');
     toggleThemeCheckbox.checked = true;
 }
 
+
 toggleThemeCheckbox.addEventListener('change', function() {
-    document.body.style.backgroundColor = this.checked ? '#1a1a1a' : '#f4f4f4';
-    document.body.style.color = this.checked ? 'white' : 'black';
+    if (this.checked) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
 });
+
 
 // Timezone Autocomplete (simplified for demonstration)
 const timezones = ["PDT", "EDT", "CDT", "MDT", "BST", "IST", "CEST", "AEST"];
