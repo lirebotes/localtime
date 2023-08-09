@@ -1,65 +1,49 @@
-function getCurrentTimezone() {
-    const timeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    return timeZoneString.split('/')[1] || timeZoneString;
-}
+// Initialize inputs with current date/time and timezone
+const currentDate = new Date();
+document.getElementById('input-date').valueAsDate = currentDate;
+document.getElementById('input-time').value = `${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}`;
+document.getElementById('input-timezone').value = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-function displayLocalTime(utcTimestamp, timezone) {
-    const options = {
+// Function to update display
+function updateDisplay(dateTime, timeZone) {
+    const optionsDate = {
         year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
         hour: '2-digit',
         minute: '2-digit',
-        timeZone: timezone
+        timeZone: timeZone
     };
 
-    const formattedTime = new Intl.DateTimeFormat('en-US', options).format(utcTimestamp);
-    document.getElementById('local-time').textContent = formattedTime;
-    document.getElementById('time-zone').textContent = getCurrentTimezone();
+    let formattedDate = new Intl.DateTimeFormat('en-US', optionsDate).format(dateTime);
+    document.getElementById('display-date').textContent = formattedDate;
+
+    const optionsTimeZone = {
+        timeZoneName: 'short',
+        timeZone: timeZone
+    };
+
+    let formattedTimeZone = new Intl.DateTimeFormat('en-US', optionsTimeZone).format(dateTime);
+    document.getElementById('display-timezone').textContent = formattedTimeZone;
 }
 
-// Main display logic
-const urlParams = new URLSearchParams(window.location.search);
-let utcTimestamp = new Date(urlParams.get("time"));
-let timezone = urlParams.get("timezone") || getCurrentTimezone();
+// Detect dark mode preference
+const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+const toggleThemeCheckbox = document.getElementById('toggleTheme');
 
-if (isNaN(utcTimestamp.getTime())) {
-    document.getElementById('local-time').textContent = "Invalid time provided.";
-} else {
-    displayLocalTime(utcTimestamp, timezone);
+if (darkModeMediaQuery.matches) {
+    toggleThemeCheckbox.checked = true;
 }
 
-// Input interactions
-const dateInput = document.getElementById('date-input');
-const timeInput = document.getElementById('time-input');
-const tzInput = document.getElementById('tz-input');
-const generatedLink = document.getElementById('generated-link');
-const copyBtn = document.getElementById('copy-btn');
-
-dateInput.valueAsDate = new Date();
-tzInput.value = getCurrentTimezone();
-
-dateInput.addEventListener('input', generateLink);
-timeInput.addEventListener('input', generateLink);
-tzInput.addEventListener('input', generateLink);
-
-function generateLink() {
-    const date = dateInput.value;
-    const time = timeInput.value;
-    const tz = tzInput.value;
-    const link = `${window.location.origin}${window.location.pathname}?time=${date}T${time}:00.000Z&timezone=${tz}`;
-    generatedLink.href = link;
-    generatedLink.textContent = link;
-}
-
-copyBtn.addEventListener('click', function() {
-    const el = document.createElement('textarea');
-    el.value = generatedLink.textContent;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-    alert('Link copied to clipboard!');
+toggleThemeCheckbox.addEventListener('change', function() {
+    document.body.style.backgroundColor = this.checked ? '#1a1a1a' : '#f4f4f4';
+    document.body.style.color = this.checked ? 'white' : 'black';
 });
 
-generateLink();
+// Timezone Autocomplete (simplified for demonstration)
+const timezones = ["PDT", "EDT", "CDT", "MDT", "BST", "IST", "CEST", "AEST"];
+const timezoneInput = document.getElementById('input-timezone');
+let activeTimeout;
+timezoneInput.addEventListener('keyup', function() {
+    clearTimeout(activeTimeout);
+    active
