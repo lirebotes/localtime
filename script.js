@@ -3,6 +3,7 @@ const currentDate = new Date();
 document.getElementById('input-date').valueAsDate = currentDate;
 document.getElementById('input-time').value = `${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}`;
 document.getElementById('input-timezone').value = Intl.DateTimeFormat().resolvedOptions().timeZone;
+document.getElementById('copy-link').addEventListener('click', copyToClipboard);
 
 // Function to update display
 function updateDisplay(dateTime, timeZone) {
