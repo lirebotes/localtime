@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Local Time">
-    <meta property="og:description" id="ogDescription" content="--:--">
-    <meta property="og:image" content="https://og-image.vercel.app/Click%20to%20view%20your%20local%20time.png?theme=dark&md=1&fontSize=100px">    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
-    <title>Local Time Display</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Local Time">
+        <meta property="og:description" id="ogDescription" content="Too lazy to do the math? Click the link to show your local time">
+        <!-- <meta property="og:image" content="https://og-image.vercel.app/Click%20to%20view%20your%20local%20time.png?theme=dark&md=1&fontSize=100px">    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet"> -->
+        <title>Local Time Display</title>
+    </head>
 
-<body class="bg-gray-800 text-gray-200 font-mono h-screen flex flex-col justify-between items-center py-12">
-    <h1 class="text-8xl mb-8" id="displayTime">--:--</h1>
-
-    <div class="container mx-auto text-center p-4 space-y-4">
-                    <h3>
+    <body class="bg-gray-800 text-gray-200 font-mono h-screen flex flex-col justify-between items-center py-12">
+        <h1 class="text-8xl mb-8" id="displayTime">--:--</h1>
+        <div class="container mx-auto text-center p-4 space-y-4">
+            <h3>
                 Generate your own:
             </h3><div class="flex space-x-4 justify-center items-center">
             <input type="time" id="inputTime" class="p-2 rounded bg-gray-700 border border-gray-600 shadow-inner">
@@ -43,8 +42,8 @@
                 📋 Copy
             </button>
         </div>
-    </div>
 
-    <script src="script.js"></script>
-</body>
+
+        <script src="script.js"></script>
+    </body>
 </html>
