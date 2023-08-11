@@ -4,51 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LocalTime</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta property="og:title" content="Local Time">
+    <meta property="og:description" id="ogDescription" content="--:--">
+    <meta property="og:image" content="URL_TO_A_THUMBNAIL_IMAGE"> <!-- Ideally, provide an image URL here for a better Slack preview. -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
+    <title>Local Time Display</title>
 </head>
 
-<body class="bg-gray-800 text-white h-screen flex flex-col justify-between">
+<body class="bg-gray-800 text-gray-200 font-mono h-screen flex flex-col justify-between items-center py-12">
+    <h1 class="text-8xl mb-8" id="displayTime">--:--</h1>
 
-    <!-- Display time section -->
-    <div class="text-center py-10">
-        <p class="text-8xl font-bold" id="displayTime"></p>
-    </div>
-
-    <!-- Generate link section -->
-    <div class="text-center py-10">
-        <h2 class="text-3xl mb-6">Generate Your Link</h2>
-
-        <div>
-            <input id="inputTime" type="time" class="bg-gray-700 text-white rounded px-3 py-2 mr-2 mb-3">
-            <input list="timezones" id="inputTZ" class="bg-gray-700 text-white rounded px-3 py-2 mr-2 mb-3">
-            
+    <div class="container mx-auto text-center p-4 space-y-4">
+        <div class="flex space-x-4 justify-center items-center">
+            <input type="time" id="inputTime" class="p-2 rounded bg-gray-700 border border-gray-600 shadow-inner">
+            <input list="timezones" id="inputTZ" placeholder="Timezone" class="p-2 rounded bg-gray-700 border border-gray-600 shadow-inner w-36">
             <datalist id="timezones">
-                <option value="UTC">
-                <option value="EST">
-                <option value="EDT">
-                <option value="CST">
-                <option value="CDT">
-                <option value="MST">
-                <option value="MDT">
-                <option value="PST">
-                <option value="PDT">
-                <option value="CET">
-                <option value="BST">
+                <option value="UTC"></option>
+                <option value="EST"></option>
+                <option value="EDT"></option>
+                <option value="CST"></option>
+                <option value="CDT"></option>
+                <option value="MST"></option>
+                <option value="MDT"></option>
+                <option value="PST"></option>
+                <option value="PDT"></option>
+                <option value="CET"></option>
+                <option value="BST"></option>
             </datalist>
-
-            <button onclick="copyToClipboard()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3">
-                📋 Copy Link
-            </button>
-            
         </div>
 
-        <div class="mt-6">
-            <a id="generatedURL" target="_blank" class="text-blue-400 hover:text-blue-500"></a>
+        <div class="flex flex-col items-center space-y-2">
+            <a id="generatedURL" href="#" class="text-green-500 hover:text-green-400">
+                Link will appear here
+            </a>
+            <button onclick="copyToClipboard()" class="bg-green-500 px-4 py-1 rounded hover:bg-green-600 transition duration-300">
+                📋 Copy
+            </button>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
-
 </html>
