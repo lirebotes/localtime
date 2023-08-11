@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta property="og:title" content="Local Time">
-        <meta property="og:description" id="ogDescription" content="Too lazy to do the math? Click the link to show your local time">
-        <!-- <meta property="og:image" content="https://og-image.vercel.app/Click%20to%20view%20your%20local%20time.png?theme=dark&md=1&fontSize=100px">    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet"> -->
-        <title>Local Time Display</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Local Time">
+    <meta property="og:description" id="ogDescription" content="Too lazy to do the math? Click the link to show your local time:">
+    <!-- <meta property="og:image" content="https://og-image.vercel.app/Click%20to%20view%20your%20local%20time.png?theme=dark&md=1&fontSize=100px"> -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
+    <title>Local Time Display</title>
+</head>
 
-    <body class="bg-gray-800 text-gray-200 font-mono h-screen flex flex-col justify-between items-center py-12">
-        <h1 class="text-8xl mb-8" id="displayTime">--:--</h1>
-        <div class="container mx-auto text-center p-4 space-y-4">
-            <h3>
-                Generate your own:
-            </h3><div class="flex space-x-4 justify-center items-center">
-            <input type="time" id="inputTime" class="p-2 rounded bg-gray-700 border border-gray-600 shadow-inner">
-            <input list="timezones" id="inputTZ" placeholder="Timezone" class="p-2 rounded bg-gray-700 border border-gray-600 shadow-inner w-36">
-            <datalist id="timezones">
-                <option value="UTC"></option>
-                <option value="EST"></option>
-                <option value="EDT"></option>
-                <option value="CST"></option>
-                <option value="CDT"></option>
-                <option value="MST"></option>
-                <option value="MDT"></option>
-                <option value="PST"></option>
-                <option value="PDT"></option>
-                <option value="CET"></option>
-                <option value="BST"></option>
-            </datalist>
-        </div>
+<body class="bg-gray-800 text-gray-200 font-mono h-screen flex flex-col justify-between items-center py-12">
+    <h1 class="text-8xl mb-8" id="displayTime">--:--</h1>
 
-        <div class="flex flex-col items-center space-y-2">
+    <div class="container mx-auto text-center p-4 space-y-4">
+        <h3>
+            Generate your own:
+        </h3><div class="flex space-x-4 justify-center items-center">
+        <input type="time" id="inputTime" class="p-2 rounded bg-gray-700 border border-gray-600 shadow-inner">
+        <input list="timezones" id="inputTZ" placeholder="Timezone" class="p-2 rounded bg-gray-700 border border-gray-600 shadow-inner w-36">
+        <datalist id="timezones">
+            <option value="UTC"></option>
+            <option value="EST"></option>
+            <option value="EDT"></option>
+            <option value="CST"></option>
+            <option value="CDT"></option>
+            <option value="MST"></option>
+            <option value="MDT"></option>
+            <option value="PST"></option>
+            <option value="PDT"></option>
+            <option value="CET"></option>
+            <option value="BST"></option>
+        </datalist>
+    </div>
 
-            <a id="generatedURL" href="#" class="text-green-500 hover:text-green-400">
-                Link will appear here
-            </a>
-            <button onclick="copyToClipboard()" class="bg-green-500 px-4 py-1 rounded hover:bg-green-600 transition duration-300">
-                📋 Copy
-            </button>
-        </div>
+    <div class="flex flex-col items-center space-y-2">
 
+        <a id="generatedURL" href="#" class="text-green-500 hover:text-green-400">
+            Link will appear here
+        </a>
+        <button onclick="copyToClipboard()" class="bg-green-500 px-4 py-1 rounded hover:bg-green-600 transition duration-300">
+            📋 Copy
+        </button>
+    </div>
 
-        <script src="script.js"></script>
-    </body>
+    <script src="script.js"></script>
+</body>
 </html>

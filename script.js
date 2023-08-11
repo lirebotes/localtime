@@ -105,6 +105,5 @@ function copyToClipboard() {
     textArea.select();
     document.execCommand('Copy');
     textArea.remove();
-    alert("Link copied to clipboard!");
 }
 
